@@ -20,6 +20,8 @@ export default function Navbar() {
             <li className="nav-item mx-2">
               <Link className="nav-link" to="/notes">Notes</Link>
             </li>
+          </ul>
+          <ul className="navbar-nav">
             <li className="nav-item mx-2">
               <Link className="nav-link" to="/signin">Sign In</Link>
             </li>
