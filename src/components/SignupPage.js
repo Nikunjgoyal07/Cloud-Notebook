@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
 export default function SignupPage() {
   const [yourName, setNoteName] = useState('');
@@ -28,10 +29,17 @@ export default function SignupPage() {
           alert("Email already exists");
         } else if (responseData === "User signed up") {
           alert("User signed up");
+          history.push('/');
         }
       } catch (error) {
         console.error('Error sending data to backend:', error);
         // Handle the error and show appropriate feedback to the user.
+      } finally {
+        // Reset the form
+        setyourName('');
+        setyourEmail('');
+        setyourPassword('');
+        setyourPassword2('');
       }
     }
   }
