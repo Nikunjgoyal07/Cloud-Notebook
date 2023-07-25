@@ -20,6 +20,7 @@ export default function SignupPage() {
         if (!response.ok) {
           throw new Error('Failed to send data to backend');
         }
+        console.log(response);
   
         const responseData = await response.text();
   
