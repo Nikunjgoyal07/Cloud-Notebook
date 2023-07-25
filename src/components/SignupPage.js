@@ -21,7 +21,7 @@ export default function SignupPage() {
           throw new Error('Failed to send data to backend');
         }
   
-        const responseData = await response.json();
+        const responseData = await response.text();
   
         if (responseData === "Email already exists") {
           alert("Email already exists");
