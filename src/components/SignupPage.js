@@ -29,7 +29,7 @@ export default function SignupPage() {
           alert("Email already exists");
         } else if (responseData === "User signed up") {
           alert("User signed up");
-          history.push('/');
+          history.push('../');
         }
       } catch (error) {
         console.error('Error sending data to backend:', error);
