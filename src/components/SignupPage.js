@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import LoadingModal from './LoadingModal';
 
 export default function SignupPage() {
-  const [yourName, setNoteName] = useState('');
+  const [yourName, setyourName] = useState('');
   const [yourEmail, setyourEmail] = useState('');
   const [yourPassword, setyourPassword] = useState('');
   const [yourPassword2, setyourPassword2] = useState('');
+  const [loading, setLoading] = useState(false);
+  const loadingModal = loading ? <LoadingModal/> : null;
+  const navigate = useNavigate();
   async function handleRegisterFx() {
+    setLoading(true);
     if (yourPassword !== yourPassword2) {
       alert("Passwords do not match");
     } else {
@@ -26,10 +31,12 @@ export default function SignupPage() {
         const responseData = await response.text();
   
         if (responseData === "Email already exists") {
+          setLoading(false);
           alert("Email already exists");
         } else if (responseData === "User signed up") {
+          setLoading(false);
           alert("User signed up");
-          history.push('../');
+          navigate('../');
         }
       } catch (error) {
         console.error('Error sending data to backend:', error);
@@ -51,7 +58,7 @@ export default function SignupPage() {
     setyourPassword(event.target.value);
   }
   function handleyourNamechange(event) {
-    setNoteName(event.target.value);
+    setyourName(event.target.value);
   }
   function handleyourEmailchange(event) {
     setyourEmail(event.target.value);
@@ -117,10 +124,7 @@ export default function SignupPage() {
 
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                <img src="signupImage.webp"
-                  class="img-fluid" alt="Sample image"/>
-
+                <img src="signupImage.webp" class="img-fluid" alt="Sample image"/>
               </div>
             </div>
           </div>
@@ -128,6 +132,7 @@ export default function SignupPage() {
       </div>
     </div>
   </div>
+  {loadingModal}
 </section>
   )
 }
