@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LoadingModal from './LoadingModal';
 import ContentModal from '../modelAndWarningComponents/ContentModal';
+import Add from './Add';
 
 export default function NoteArea() {
     const [noteName, setNoteName] = useState('');
@@ -73,6 +74,7 @@ export default function NoteArea() {
             {showModal ? (
                 <ContentModal />
             ) : (
+                <>
                 <div className="container">
                     <div className="mb-3 my-5">
                         <label htmlFor="noteNameInput" className="form-label">WRITE A NOTE</label>
@@ -81,6 +83,8 @@ export default function NoteArea() {
                         <button type="button" className="btn btn-primary" onClick={sendNoteToBackend}>Save Note</button>
                     </div>
                 </div>
+                <Add />
+                </>
             )}
             {loadingModal}
         </>
